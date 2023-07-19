@@ -9,5 +9,8 @@ return [
     */
 
     'add-product' => 'Új termék',
-    'delete' => 'Törlés',
+    'destroy' => 'Törlés',
+    'edit' => 'Szerkesztés',
+    'no-category' => 'nincs kategória',
+    'create-product' => 'Termék hozzáadása'
 ];

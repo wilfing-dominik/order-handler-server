@@ -4,24 +4,34 @@
             {{ __('nav.products') }}
         </h2>
 
-        <x-primary-button>
+        <x-primary-link-button href="{{ route('products.create') }}">
             {{ __('products.add-product') }}
-        </x-primary-button>
+        </x-primary-link-button>
     </x-slot>
 
-    <div class="flex gap-4 flex-col max-w-7xl mx-auto  ">
+    <div class="flex gap-4 flex-col max-w-7xl mx-auto">
         @foreach ($products as $product)
-                    <a href="https://google.com" class="flex flex-row bg-white shadow justify-between px-6 py-4">
-                        <div class="flex justify-start align-middle w-full">{{ $product->name }}</div>
+                    <div class="flex flex-row bg-white shadow justify-between px-6 py-4 rounded">
+                        <div class="flex justify-start items-center w-full">{{ $product->name }}</div>
 
-                        <div class="flex justify-center align-middle w-full">{{ $product->price }}</div>
+                        <div class="flex justify-center items-center w-full">{{ $product->price }}</div>
 
-                        <div class="flex justify-end align-middle w-full">
-                            <x-primary-button>
-                                {{ __('products.delete') }}
-                            </x-primary-button>
+                        @if($product->category_id)
+                            <div class="flex justify-center items-center w-full">{{ $product->category->name }}</div>
+                        @else
+                            <div class="flex justify-center items-center w-full">{{ __('products.no-category') }}</div>
+                        @endif
+
+                        <div class="flex flex-row gap-4">
+                            <x-primary-link-button  href="{{ route('products.edit', ['product' => Str::ascii($product->name)]) }}" >
+                                {{ __('products.edit') }}
+                            </x-primary-link-button>
+
+                            {{-- <x-primary-link-button href="{{ route('products.destroy', ['product' => Str::ascii($product->id)]) }}">
+                                {{ __('products.destroy') }}
+                            </x-primary-link-button> --}}
                         </div>
-                    </a>
+                    </div>
         @endforeach
     </div>
 
