@@ -4,13 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Navigation menu Language Lines
+    | Categories page Language Lines
     |--------------------------------------------------------------------------
     |
     */
 
-    'dashboard' => 'Főmenü',
-    'products' => 'Terméklista',
-    'categories' => 'Termék kategóriák',
-    'settings' => 'Beállítások',
+    'add-category' => 'Új kategória',
 ];
