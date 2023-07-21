@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderHistoryController;
 
 use App\Models\Table;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
     Route::get('/orders/{tableId}', [OrderController::class, 'getOrdersByTable'], ['tableId' => "{tableId}"])->name('orders.by.table');
+
+    Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order.history');
 });
 
 require __DIR__ . '/auth.php';

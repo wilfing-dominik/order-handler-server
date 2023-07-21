@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="flex flex-row gap-4" style="height: 75vh">
-        <div class="flex flex-wrap justify-center gap-4 w-7/12 items-start pt-10">
+        <div class="flex flex-wrap justify-center gap-4 w-7/12 items-start pt-11">
             @foreach ($tables as $table)
                 <a id="{{ $table->id }}" class="tableCard flex justify-center items-center bg-white w-52 h-28 flex-col rounded cursor-pointer shadow-sm">
                     <div>{{ $table->name }}</div>
