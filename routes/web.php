@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\OrderController;
+
+use App\Models\Table;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,7 +17,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $tables = Table::all();
+    return view('dashboard')->with('tables', $tables);;
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -31,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+
+    Route::get('/orders/{tableId}', [OrderController::class, 'getOrdersByTable'], ['tableId' => "{tableId}"])->name('orders.by.table');
 });
 
 require __DIR__ . '/auth.php';
