@@ -15,7 +15,7 @@ class OrderController extends Controller
 
     public function getOrdersByTable($tableId)
     {
-        $orders = Order::where('table_id', $tableId)->get();
+        $orders = Order::where('table_id', $tableId)->with('product')->get();
         return response()->json($orders);
     }
 
