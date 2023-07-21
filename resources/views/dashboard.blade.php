@@ -1,4 +1,3 @@
-{{-- TODO REWORK THIS PAGE --}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -7,31 +6,27 @@
     </x-slot>
 
     <div class="flex flex-row">
-        <div class=" text-gray-900 flex flex-wrap gap-6 flex-row" style="width: 65%; flex-wrap: wrap;">
+        <div class="flex gap-4">
             @foreach ($tables as $table)
-                <a id="{{ $table->id }}" class="bg-white shadow-sm p-6 rounded tableCard flex items-center justify-center flex-col gap-4" style="cursor: pointer; width: 255px; height: 177px;">
+                <a id="{{ $table->id }}" class="tableCard bg-white p-3">
                     <div>{{ $table->name }}</div>
                     <div>1350 Ft</div>
                 </a>
             @endforeach
         </div>
 
-        <div class="flex flex-col gap-4" style="width: 35%">
-            <div class="p-6 bg-white shadow rounded orderContainer" style="height: 60%">
+        <div class="">
+            <div class="orderContainer">
                 Kattintson egy asztalra a rendelések megjelenítéséhez!
             </div>
 
-            <div class="productContainer p-6 bg-white shadow rounded" style="height: 60%">
+            <div class="productContainer">
             </div>
         </div>
     </div>
 
     @section('scripts')
         <script>
-            function fillDisplayContainer(data) {
-
-            }
-
             document.addEventListener('DOMContentLoaded', () => {
                 let tables = document.querySelectorAll(".tableCard")
                 tables.forEach(table => {
