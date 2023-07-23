@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <div class="flex flex-row gap-4" style="height: 75vh">
-        <div class="flex flex-wrap justify-center gap-4 w-7/12 items-start pt-11">
+    <div class="flex flex-row gap-4" style="min-height: 75vh">
+        <div class="flex flex-wrap justify-center gap-4 w-9/12 items-start pt-11 content-start">
             @foreach ($tables as $table)
                 <a id="{{ $table->id }}" class="tableCard flex justify-center items-center bg-white w-52 h-28 flex-col rounded cursor-pointer shadow-sm">
                     <div>{{ $table->name }}</div>
@@ -15,10 +15,10 @@
             @endforeach
         </div>
 
-        <div class="flex flex-col gap-4 w-5/12 h-full">
+        <div class="flex flex-col gap-4 w-3/12 h-full">
             <div class="h-full">
                 <p class="text-xl font-semibold pb-3">Rendelések</p>
-                <div class="orderContainer bg-white shadow-sm p-4 rounded-sm h-full">
+                <div class="orderContainer flex flex-col justify-center gap-3 bg-white shadow-sm p-4 rounded h-full">
                     Kattintson egy asztalra a rendelések megjelenítéséhez!
                 </div>
             </div>
@@ -34,6 +34,8 @@
     @section('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', () => {
+
+                // FETCH ORDERS
                 let tables = document.querySelectorAll(".tableCard")
                 tables.forEach(table => {
                     table.addEventListener('click', () => {
@@ -53,9 +55,10 @@
                             }
 
                             for (let i = 0; i < response.data.length; i++) {
-                                const paragraph = document.createElement('p');
-                                paragraph.textContent = `${response.data[i].product.name}`;
-                                orderContainer.appendChild(paragraph);
+                                const orders = document.createElement('div');
+                                orders.classList.add("p-4", "bg-gray-100", "rounded", "shadow-sm", "font-semibold")
+                                orders.textContent = `${response.data[i].product.name} ${response.data[i].product.price}`;
+                                orderContainer.appendChild(orders);
                             }
                         })
                         .catch(function (error) {
